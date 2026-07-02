@@ -1,0 +1,182 @@
+:root {
+  /* === BACKGROUNDS === */
+  --color-bg-base:       #F8F7F4;
+  --color-bg-surface:    #FFFFFF;
+  --color-bg-sunken:     #EFF0ED;
+  --color-bg-overlay:    #1A2332E6;
+
+  /* === PRIMÁRIA — Azul Petróleo === */
+  --color-primary-950:   #0A1628;
+  --color-primary-900:   #0D1F3C;
+  --color-primary-800:   #112B52;
+  --color-primary-700:   #163C6E;
+  --color-primary-600:   #1B4F8E;
+  --color-primary-500:   #2563AB;
+  --color-primary-400:   #3B82D4;
+  --color-primary-300:   #60A5F4;
+  --color-primary-200:   #BFDBFE;
+  --color-primary-100:   #EFF6FF;
+  --color-primary-50:    #F5F9FF;
+
+  /* === ACENTO — Âmbar Brasileiro === */
+  --color-accent-600:    #D97706;
+  --color-accent-500:    #F59E0B;
+  --color-accent-400:    #FBBF24;
+  --color-accent-100:    #FEF3C7;
+  --color-accent-50:     #FFFBEB;
+
+  /* === SEMÂNTICAS === */
+  --color-success-700:   #047857;
+  --color-success-500:   #10B981;
+  --color-success-100:   #D1FAE5;
+  --color-success-50:    #ECFDF5;
+
+  --color-warning-700:   #B45309;
+  --color-warning-500:   #F59E0B;
+  --color-warning-100:   #FEF3C7;
+
+  --color-danger-700:    #B91C1C;
+  --color-danger-600:    #DC2626;
+  --color-danger-500:    #EF4444;
+  --color-danger-100:    #FEE2E2;
+  --color-danger-50:     #FFF5F5;
+
+  --color-info-500:      #3B82F6;
+  --color-info-100:      #DBEAFE;
+
+  /* === NEUTROS === */
+  --color-neutral-950:   #0A0E14;
+  --color-neutral-900:   #111827;
+  --color-neutral-800:   #1F2937;
+  --color-neutral-700:   #374151;
+  --color-neutral-600:   #4B5563;
+  --color-neutral-500:   #6B7280;
+  --color-neutral-400:   #9CA3AF;
+  --color-neutral-300:   #D1D5DB;
+  --color-neutral-200:   #E5E7EB;
+  --color-neutral-100:   #F3F4F6;
+  --color-neutral-50:    #F9FAFB;
+
+  /* === PRIORIDADES P1–P5 === */
+  --color-p1-bg:         #FFF1F2;
+  --color-p1-border:     #FDA4AF;
+  --color-p1-text:       #9F1239;
+  --color-p1-badge:      #E11D48;
+
+  --color-p2-bg:         #FFF7ED;
+  --color-p2-border:     #FDBA74;
+  --color-p2-text:       #9A3412;
+  --color-p2-badge:      #EA580C;
+
+  --color-p3-bg:         #FEFCE8;
+  --color-p3-border:     #FDE047;
+  --color-p3-text:       #713F12;
+  --color-p3-badge:      #CA8A04;
+
+  --color-p4-bg:         #F0FDF4;
+  --color-p4-border:     #86EFAC;
+  --color-p4-text:       #14532D;
+  --color-p4-badge:      #16A34A;
+
+  --color-p5-bg:         #F8FAFC;
+  --color-p5-border:     #CBD5E1;
+  --color-p5-text:       #475569;
+  --color-p5-badge:      #64748B;
+
+  /* === STATUS AGENDAMENTO === */
+  --status-pending:      #F59E0B;
+  --status-pending-resp: #8B5CF6;
+  --status-confirmed:    #3B82F6;
+  --status-arrived:      #10B981;
+  --status-calling:      #F97316;
+  --status-in-progress:  #059669;
+  --status-completed:    #6B7280;
+  --status-cancelled:    #EF4444;
+  --status-no-show:      #9CA3AF;
+
+  /* === TIPOGRAFIA === */
+  --font-display:  'Sora', sans-serif;
+  --font-body:     'Plus Jakarta Sans', sans-serif;
+  --font-mono:     'JetBrains Mono', monospace;
+
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+
+  --font-light:    300;
+  --font-regular:  400;
+  --font-medium:   500;
+  --font-semibold: 600;
+  --font-bold:     700;
+
+  --leading-tight:   1.25;
+  --leading-snug:    1.375;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.625;
+
+  --tracking-tight:  -0.025em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.025em;
+  --tracking-widest:  0.1em;
+
+  /* === ESPAÇAMENTO === */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+  --space-24:  6rem;
+
+  /* === LAYOUT === */
+  --sidebar-width:       240px;
+  --sidebar-collapsed:   64px;
+  --topbar-height:       64px;
+  --content-max-width:   1400px;
+  --content-padding:     var(--space-6);
+
+  /* === BORDER RADIUS === */
+  --radius-sm:   0.25rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1rem;
+  --radius-2xl:  1.5rem;
+  --radius-full: 9999px;
+
+  /* === SHADOWS === */
+  --shadow-xs:    0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm:    0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md:    0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg:    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+  /* === TRANSITIONS === */
+  --duration-fast:    150ms;
+  --duration-normal:  250ms;
+  --duration-slow:    350ms;
+  --ease-out:         cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-in-out:      cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-spring:      cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* === Z-INDEX === */
+  --z-below:    -1;
+  --z-base:      0;
+  --z-raised:    10;
+  --z-dropdown:  100;
+  --z-sticky:    200;
+  --z-overlay:   300;
+  --z-modal:     400;
+  --z-toast:     500;
+  --z-tooltip:   600;
+}
