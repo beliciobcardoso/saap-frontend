@@ -20,7 +20,11 @@ const layout = computed(() => {
 <template>
   <Toaster position="top-right" rich-colors />
   <AuthLayout v-if="layout === 'auth'">
-    <RouterView />
+    <RouterView v-slot="{ Component }">
+      <Transition name="page" mode="out-in">
+        <component :is="Component" />
+      </Transition>
+    </RouterView>
   </AuthLayout>
   <QueueLayout v-else-if="layout === 'queue'">
     <RouterView />
@@ -29,6 +33,10 @@ const layout = computed(() => {
     <RouterView />
   </template>
   <AppLayout v-else>
-    <RouterView />
+    <RouterView v-slot="{ Component }">
+      <Transition name="page" mode="out-in">
+        <component :is="Component" />
+      </Transition>
+    </RouterView>
   </AppLayout>
 </template>

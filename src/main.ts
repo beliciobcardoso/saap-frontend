@@ -13,12 +13,18 @@ const queryClient = new QueryClient({
     queries: {
       staleTime: 60 * 1000,
       gcTime: 5 * 60 * 1000,
+      refetchOnWindowFocus: true,
       retry: (failureCount, error: unknown) => {
         const axiosError = error as { response?: { status: number } }
-        if (axiosError?.response?.status === 404) return false
+        if (axiosError?.response?.status === 401) return false
         if (axiosError?.response?.status === 403) return false
+        if (axiosError?.response?.status === 404) return false
+        if (axiosError?.response?.status === 409) return false
         return failureCount < 2
       },
+    },
+    mutations: {
+      retry: false,
     },
   },
 })

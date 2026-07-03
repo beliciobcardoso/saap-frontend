@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import {
   PhGridFour, PhCalendarBlank, PhQueue, PhUserCircle,
   PhStethoscope, PhFirstAid, PhUsers, PhClipboardText,
-  PhCaretDoubleLeft, PhCaretDoubleRight,
+  PhCaretDoubleLeft, PhCaretDoubleRight, PhList, PhX,
 } from '@phosphor-icons/vue'
 import { useUiStore } from '@/stores/ui'
 import { usePermissions } from '@/composables/usePermissions'
@@ -12,6 +12,7 @@ import { usePermissions } from '@/composables/usePermissions'
 const ui = useUiStore()
 const route = useRoute()
 const perms = usePermissions()
+const mobileOpen = ref(false)
 
 const navItems = computed(() => [
   { icon: PhGridFour, label: 'Dashboard', path: '/dashboard', show: true },
@@ -27,19 +28,41 @@ const navItems = computed(() => [
 function isActive(path: string) {
   return route.path.startsWith(path)
 }
+
+function closeMobile() {
+  mobileOpen.value = false
+}
 </script>
 
 <template>
-  <aside class="sidebar" :class="{ 'sidebar--collapsed': ui.sidebarCollapsed }">
+  <button class="mobile-menu-btn" @click="mobileOpen = true">
+    <PhList :size="24" />
+  </button>
+
+  <Teleport to="body">
+    <Transition name="sidebar-overlay">
+      <div v-if="mobileOpen" class="sidebar-overlay" @click="closeMobile" />
+    </Transition>
+  </Teleport>
+
+  <aside
+    class="sidebar"
+    :class="{ 'sidebar--collapsed': ui.sidebarCollapsed, 'sidebar--mobile-open': mobileOpen }"
+  >
     <div class="sidebar__header">
       <div class="sidebar__logo">
         <span class="sidebar__logo-icon">S</span>
         <span v-if="!ui.sidebarCollapsed" class="sidebar__logo-text">SAAP</span>
       </div>
-      <button class="sidebar__toggle" @click="ui.toggleSidebar">
-        <PhCaretDoubleLeft v-if="!ui.sidebarCollapsed" :size="16" weight="bold" />
-        <PhCaretDoubleRight v-else :size="16" weight="bold" />
-      </button>
+      <div class="sidebar__header-actions">
+        <button class="sidebar__toggle" @click="ui.toggleSidebar">
+          <PhCaretDoubleLeft v-if="!ui.sidebarCollapsed" :size="16" weight="bold" />
+          <PhCaretDoubleRight v-else :size="16" weight="bold" />
+        </button>
+        <button class="sidebar__close-mobile" @click="closeMobile">
+          <PhX :size="20" />
+        </button>
+      </div>
     </div>
 
     <nav class="sidebar__nav">
@@ -50,6 +73,7 @@ function isActive(path: string) {
         class="sidebar__item"
         :class="{ 'sidebar__item--active': isActive(item.path) }"
         :title="ui.sidebarCollapsed ? item.label : undefined"
+        @click="closeMobile"
       >
         <component :is="item.icon" :size="20" weight="regular" class="sidebar__icon" />
         <span v-if="!ui.sidebarCollapsed" class="sidebar__label">{{ item.label }}</span>
@@ -173,5 +197,81 @@ function isActive(path: string) {
 .sidebar__label {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.sidebar__header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.sidebar__close-mobile {
+  display: none;
+  background: transparent;
+  border: none;
+  color: rgba(255 255 255 / 0.5);
+  cursor: pointer;
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  align-items: center;
+}
+
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: calc(var(--z-sticky) + 1);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+  cursor: pointer;
+  color: var(--color-neutral-700);
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: calc(var(--z-overlay) + 1);
+  }
+
+  .sidebar--mobile-open {
+    transform: translateX(0);
+  }
+
+  .sidebar__close-mobile {
+    display: flex;
+  }
+
+  .sidebar__toggle {
+    display: none;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0 0 0 / 0.5);
+    z-index: var(--z-overlay);
+  }
+
+  .sidebar-overlay-enter-active,
+  .sidebar-overlay-leave-active {
+    transition: opacity var(--duration-normal);
+  }
+  .sidebar-overlay-enter-from,
+  .sidebar-overlay-leave-to {
+    opacity: 0;
+  }
 }
 </style>

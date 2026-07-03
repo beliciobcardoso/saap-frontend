@@ -62,3 +62,18 @@ code, pre, kbd, samp {
 ::-webkit-scrollbar-track { background: var(--color-neutral-100); }
 ::-webkit-scrollbar-thumb { background: var(--color-neutral-300); border-radius: var(--radius-full); }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-neutral-400); }
+
+/* Page transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity var(--duration-normal) var(--ease-out),
+              transform var(--duration-normal) var(--ease-out);
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}

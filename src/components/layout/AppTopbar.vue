@@ -5,13 +5,12 @@ import { PhSignOut } from '@phosphor-icons/vue'
 import { useAuthStore } from '@/stores/auth'
 import { useUiStore } from '@/stores/ui'
 import { useAuth } from '@/composables/useAuth'
+import AppBreadcrumb from '@/components/layout/AppBreadcrumb.vue'
 
 const route = useRoute()
 const authStore = useAuthStore()
 const ui = useUiStore()
 const { logout } = useAuth()
-
-const pageTitle = computed(() => route.meta.title as string ?? 'SAAP')
 
 const userInitial = computed(() =>
   authStore.userEmail?.charAt(0).toUpperCase() ?? '?'
@@ -36,7 +35,9 @@ const sidebarWidth = computed(() =>
 
 <template>
   <header class="topbar" :style="{ left: sidebarWidth }">
-    <div class="topbar__title">{{ pageTitle }}</div>
+    <div class="topbar__left">
+      <AppBreadcrumb />
+    </div>
     <div class="topbar__right">
       <div class="topbar__user">
         <div class="topbar__avatar">{{ userInitial }}</div>
@@ -69,11 +70,9 @@ const sidebarWidth = computed(() =>
   transition: left var(--duration-normal) var(--ease-in-out);
 }
 
-.topbar__title {
-  font-family: var(--font-display);
-  font-size: var(--text-xl);
-  font-weight: var(--font-semibold);
-  color: var(--color-neutral-900);
+.topbar__left {
+  display: flex;
+  align-items: center;
 }
 
 .topbar__right {

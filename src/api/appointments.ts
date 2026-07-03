@@ -26,4 +26,8 @@ export const appointmentsApi = {
     apiClient.put<AppointmentResponse>(`/appointments/${id}/call-next`).then(r => r.data),
   complete: (id: string) =>
     apiClient.put<AppointmentResponse>(`/appointments/${id}/complete`).then(r => r.data),
+  publicConfirm: (token: string) =>
+    apiClient.post<AppointmentResponse>('/appointments/public/confirm', null, { params: { token } }).then(r => r.data),
+  publicCancel: (token: string) =>
+    apiClient.post<AppointmentResponse>('/appointments/public/cancel', null, { params: { token } }).then(r => r.data),
 }
