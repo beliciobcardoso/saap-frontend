@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import AppModal from '@/components/ui/AppModal.vue'
 import AppButton from '@/components/ui/AppButton.vue'
-import { useServiceForm } from '@/composables/forms/useServiceForm'
 import { useCreateService, useUpdateService } from '@/composables/mutations/useServiceMutations'
 import type { ServiceResponse } from '@/api/types'
+import * as yup from 'yup'
 
 interface Props {
   modelValue: boolean
@@ -17,21 +17,19 @@ const emit = defineEmits<{ 'update:modelValue': [value: boolean] }>()
 
 const isEditing = computed(() => !!props.service)
 
-const { handleSubmit } = useServiceForm(
-  props.service ? {
-    name: props.service.name,
-    description: props.service.description ?? '',
-    durationMinutes: props.service.durationMinutes,
-    price: props.service.price,
-  } : undefined
-)
+const schema = yup.object({
+  name: yup.string().required('Nome é obrigatório').min(2, 'Mínimo 2 caracteres'),
+  description: yup.string().nullable(),
+  durationMinutes: yup.number().required('Duração é obrigatória').min(5, 'Mínimo 5 minutos').max(480, 'Máximo 8 horas'),
+  price: yup.number().required('Preço é obrigatório').min(0, 'Preço não pode ser negativo'),
+})
 
 const createMutation = useCreateService()
 const updateMutation = useUpdateService()
 
 function close() { emit('update:modelValue', false) }
 
-const onSubmit = handleSubmit((values) => {
+function onSubmit(values: any) {
   if (isEditing.value && props.service) {
     updateMutation.mutate(
       { id: props.service.id, data: values },
@@ -40,12 +38,22 @@ const onSubmit = handleSubmit((values) => {
   } else {
     createMutation.mutate(values, { onSuccess: () => close() })
   }
-})
+}
 </script>
 
 <template>
   <AppModal :model-value="modelValue" @update:model-value="close" :title="isEditing ? 'Editar Serviço' : 'Novo Serviço'" size="md">
-    <Form @submit="onSubmit" class="svc-form">
+    <Form
+      :validation-schema="schema"
+      :initial-values="{
+        name: service?.name ?? '',
+        description: service?.description ?? '',
+        durationMinutes: service?.durationMinutes ?? 30,
+        price: service?.price ?? 0,
+      }"
+      @submit="onSubmit"
+      class="svc-form"
+    >
       <div class="form-fields">
         <div class="field">
           <label class="field__label">Nome <span class="required">*</span></label>

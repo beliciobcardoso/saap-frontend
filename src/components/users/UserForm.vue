@@ -1,27 +1,33 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import AppModal from '@/components/ui/AppModal.vue'
 import AppButton from '@/components/ui/AppButton.vue'
-import { useUserForm } from '@/composables/forms/useUserForm'
 import { useCreateUser } from '@/composables/mutations/useUserMutations'
+import * as yup from 'yup'
 
 const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits<{ 'update:modelValue': [value: boolean] }>()
 
-const { handleSubmit } = useUserForm()
 const createMutation = useCreateUser()
+
+const schema = yup.object({
+  email: yup.string().required('Email é obrigatório').email('Email inválido'),
+  password: yup.string().required('Senha é obrigatória').min(6, 'Mínimo 6 caracteres'),
+  role: yup.string().oneOf(['ADMIN', 'RECEPTIONIST', 'PROFESSIONAL', 'ASSISTANT', 'PATIENT']).required('Função é obrigatória'),
+})
 
 function close() { emit('update:modelValue', false) }
 
-const onSubmit = handleSubmit((values) => {
-  createMutation.mutate(values, { onSuccess: () => close() })
-})
+function onSubmit(values: any) {
+  createMutation.mutate(values, {
+    onSuccess: () => close(),
+  })
+}
 </script>
 
 <template>
   <AppModal :model-value="modelValue" @update:model-value="close" title="Novo Usuário" size="md">
-    <Form @submit="onSubmit" class="user-form">
+    <Form :validation-schema="schema" @submit="onSubmit" class="user-form">
       <div class="form-fields">
         <div class="field">
           <label class="field__label">Email <span class="required">*</span></label>
@@ -35,7 +41,7 @@ const onSubmit = handleSubmit((values) => {
         </div>
         <div class="field">
           <label class="field__label">Função <span class="required">*</span></label>
-          <Field name="role" as="select" class="field__select">
+          <Field name="role" as="select" class="field__select" :value="'RECEPTIONIST'">
             <option value="ADMIN">Administrador</option>
             <option value="RECEPTIONIST">Recepcionista</option>
             <option value="PROFESSIONAL">Profissional</option>

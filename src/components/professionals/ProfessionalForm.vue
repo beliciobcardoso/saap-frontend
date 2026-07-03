@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { computed } from 'vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import AppModal from '@/components/ui/AppModal.vue'
 import AppButton from '@/components/ui/AppButton.vue'
-import { useProfessionalForm } from '@/composables/forms/useProfessionalForm'
 import { useCreateProfessional, useUpdateProfessional } from '@/composables/mutations/useProfessionalMutations'
 import type { ProfessionalResponse } from '@/api/types'
+import * as yup from 'yup'
 
 interface Props {
   modelValue: boolean
@@ -17,22 +17,20 @@ const emit = defineEmits<{ 'update:modelValue': [value: boolean] }>()
 
 const isEditing = computed(() => !!props.professional)
 
-const { handleSubmit, setValues } = useProfessionalForm(
-  props.professional ? {
-    name: props.professional.name,
-    email: props.professional.email,
-    phone: props.professional.phone,
-    registrationNumber: props.professional.registrationNumber,
-    role: props.professional.role,
-  } : undefined
-)
+const schema = yup.object({
+  name: yup.string().required('Nome é obrigatório').min(3, 'Mínimo 3 caracteres'),
+  email: yup.string().required('Email é obrigatório').email('Email inválido'),
+  phone: yup.string().required('Telefone é obrigatório'),
+  registrationNumber: yup.string().required('Registro profissional é obrigatório'),
+  role: yup.string().oneOf(['PROFESSIONAL', 'ASSISTANT']).required('Função é obrigatória'),
+})
 
 const createMutation = useCreateProfessional()
 const updateMutation = useUpdateProfessional()
 
 function close() { emit('update:modelValue', false) }
 
-const onSubmit = handleSubmit((values) => {
+function onSubmit(values: any) {
   if (isEditing.value && props.professional) {
     updateMutation.mutate(
       { id: props.professional.id, data: values },
@@ -41,12 +39,23 @@ const onSubmit = handleSubmit((values) => {
   } else {
     createMutation.mutate(values, { onSuccess: () => close() })
   }
-})
+}
 </script>
 
 <template>
   <AppModal :model-value="modelValue" @update:model-value="close" :title="isEditing ? 'Editar Profissional' : 'Novo Profissional'" size="lg">
-    <Form @submit="onSubmit" class="pro-form">
+    <Form
+      :validation-schema="schema"
+      :initial-values="{
+        name: professional?.name ?? '',
+        email: professional?.email ?? '',
+        phone: professional?.phone ?? '',
+        registrationNumber: professional?.registrationNumber ?? '',
+        role: professional?.role ?? 'PROFESSIONAL',
+      }"
+      @submit="onSubmit"
+      class="pro-form"
+    >
       <div class="form-grid">
         <div class="field field--full">
           <label class="field__label">Nome <span class="required">*</span></label>

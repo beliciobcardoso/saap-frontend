@@ -3,13 +3,13 @@ import type { UserResponse, UserRequest } from './types'
 
 export const usersApi = {
   list: () =>
-    apiClient.get<UserResponse[]>('/users').then(r => r.data),
+    apiClient.get<UserResponse[]>('/api/v1/users').then(r => r.data),
   get: (id: string) =>
-    apiClient.get<UserResponse>(`/users/${id}`).then(r => r.data),
+    apiClient.get<UserResponse>(`/api/v1/users/${id}`).then(r => r.data),
   create: (data: UserRequest) =>
-    apiClient.post<UserResponse>('/users', data).then(r => r.data),
+    apiClient.post<UserResponse>('/api/v1/users', data).then(r => r.data),
   update: (id: string, data: Partial<UserRequest>) =>
-    apiClient.put<UserResponse>(`/users/${id}`, data).then(r => r.data),
+    apiClient.put<UserResponse>(`/api/v1/users/${id}`, data).then(r => r.data),
   deactivate: (id: string) =>
-    apiClient.delete(`/users/${id}`),
+    apiClient.delete(`/api/v1/users/${id}`),
 }

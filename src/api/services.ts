@@ -3,13 +3,13 @@ import type { ServiceResponse, ServiceRequest } from './types'
 
 export const servicesApi = {
   list: () =>
-    apiClient.get<ServiceResponse[]>('/services').then(r => r.data),
+    apiClient.get<ServiceResponse[]>('/api/v1/services').then(r => r.data),
   get: (id: string) =>
-    apiClient.get<ServiceResponse>(`/services/${id}`).then(r => r.data),
+    apiClient.get<ServiceResponse>(`/api/v1/services/${id}`).then(r => r.data),
   create: (data: ServiceRequest) =>
-    apiClient.post<ServiceResponse>('/services', data).then(r => r.data),
+    apiClient.post<ServiceResponse>('/api/v1/services', data).then(r => r.data),
   update: (id: string, data: ServiceRequest) =>
-    apiClient.put<ServiceResponse>(`/services/${id}`, data).then(r => r.data),
+    apiClient.put<ServiceResponse>(`/api/v1/services/${id}`, data).then(r => r.data),
   deactivate: (id: string) =>
-    apiClient.delete(`/services/${id}`),
+    apiClient.delete(`/api/v1/services/${id}`),
 }

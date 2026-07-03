@@ -1,22 +1,19 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import AppModal from '@/components/ui/AppModal.vue'
 import AppButton from '@/components/ui/AppButton.vue'
-import AppSelect from '@/components/ui/AppSelect.vue'
-import { useAppointmentForm } from '@/composables/forms/useAppointmentForm'
 import { useBookAppointment } from '@/composables/mutations/useAppointmentMutations'
 import { toast } from 'vue-sonner'
 import { usePatients } from '@/composables/queries/usePatients'
 import { useProfessionals } from '@/composables/queries/useProfessionals'
 import { useServices } from '@/composables/queries/useServices'
 import type { PaymentMethod, PriorityLevel } from '@/api/types'
+import * as yup from 'yup'
 
 const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits<{ 'update:modelValue': [value: boolean] }>()
 
-const { handleSubmit, values } = useAppointmentForm()
 const bookMutation = useBookAppointment()
 
 const { data: patients } = usePatients()
@@ -50,14 +47,26 @@ const priorityOptions = [
   { value: 'P5', label: 'P5 — Padrão' },
 ]
 
+const schema = yup.object({
+  patientId: yup.string().required('Paciente é obrigatório'),
+  professionalId: yup.string().required('Profissional é obrigatório'),
+  serviceId: yup.string().required('Serviço é obrigatório'),
+  dateTime: yup.string().required('Data e hora são obrigatórios').test('future', 'Data deve ser futura', v => {
+    if (!v) return false
+    return new Date(v) > new Date()
+  }),
+  paymentMethod: yup.string().oneOf(['PIX', 'DINHEIRO', 'CARTAO', 'CHEQUE']).required('Forma de pagamento é obrigatória'),
+  declaredPriority: yup.string().oneOf(['P1', 'P2', 'P3', 'P4', 'P5']).nullable(),
+})
+
 const conflictError = ref(false)
 
-const onSubmit = handleSubmit((formValues) => {
+function close() { emit('update:modelValue', false) }
+
+function onSubmit(values: any) {
   conflictError.value = false
-  bookMutation.mutate(formValues, {
-    onSuccess: () => {
-      emit('update:modelValue', false)
-    },
+  bookMutation.mutate(values, {
+    onSuccess: () => close(),
     onError: (error: any) => {
       if (error?.response?.status === 409) {
         conflictError.value = true
@@ -67,52 +76,42 @@ const onSubmit = handleSubmit((formValues) => {
       }
     },
   })
-})
-
-function close() {
-  emit('update:modelValue', false)
 }
 </script>
 
 <template>
   <AppModal :model-value="modelValue" @update:model-value="close" title="Novo Agendamento" size="lg">
-    <Form @submit="onSubmit" class="book-form">
+    <Form :validation-schema="schema" @submit="onSubmit" class="book-form">
       <div class="book-form__grid">
         <div class="field">
           <label class="field__label">Paciente <span class="required">*</span></label>
-          <Field name="patientId" v-slot="{ field }">
-            <select v-bind="field" class="field__select">
-              <option value="" disabled>Selecione o paciente</option>
-              <option v-for="opt in patientOptions" :key="opt.value" :value="opt.value">
-                {{ opt.label }}
-              </option>
-            </select>
+          <Field name="patientId" as="select" class="field__select">
+            <option value="" disabled>Selecione o paciente</option>
+            <option v-for="opt in patientOptions" :key="opt.value" :value="opt.value">
+              {{ opt.label }}
+            </option>
           </Field>
           <ErrorMessage name="patientId" class="field__error" />
         </div>
 
         <div class="field">
           <label class="field__label">Profissional <span class="required">*</span></label>
-          <Field name="professionalId" v-slot="{ field }">
-            <select v-bind="field" class="field__select">
-              <option value="" disabled>Selecione o profissional</option>
-              <option v-for="opt in professionalOptions" :key="opt.value" :value="opt.value">
-                {{ opt.label }}
-              </option>
-            </select>
+          <Field name="professionalId" as="select" class="field__select">
+            <option value="" disabled>Selecione o profissional</option>
+            <option v-for="opt in professionalOptions" :key="opt.value" :value="opt.value">
+              {{ opt.label }}
+            </option>
           </Field>
           <ErrorMessage name="professionalId" class="field__error" />
         </div>
 
         <div class="field">
           <label class="field__label">Serviço <span class="required">*</span></label>
-          <Field name="serviceId" v-slot="{ field }">
-            <select v-bind="field" class="field__select">
-              <option value="" disabled>Selecione o serviço</option>
-              <option v-for="opt in serviceOptions" :key="opt.value" :value="opt.value">
-                {{ opt.label }}
-              </option>
-            </select>
+          <Field name="serviceId" as="select" class="field__select">
+            <option value="" disabled>Selecione o serviço</option>
+            <option v-for="opt in serviceOptions" :key="opt.value" :value="opt.value">
+              {{ opt.label }}
+            </option>
           </Field>
           <ErrorMessage name="serviceId" class="field__error" />
         </div>
@@ -125,25 +124,21 @@ function close() {
 
         <div class="field">
           <label class="field__label">Pagamento <span class="required">*</span></label>
-          <Field name="paymentMethod" v-slot="{ field }">
-            <select v-bind="field" class="field__select">
-              <option v-for="opt in paymentOptions" :key="opt.value" :value="opt.value">
-                {{ opt.label }}
-              </option>
-            </select>
+          <Field name="paymentMethod" as="select" class="field__select">
+            <option v-for="opt in paymentOptions" :key="opt.value" :value="opt.value">
+              {{ opt.label }}
+            </option>
           </Field>
           <ErrorMessage name="paymentMethod" class="field__error" />
         </div>
 
         <div class="field">
           <label class="field__label">Prioridade declarada</label>
-          <Field name="declaredPriority" v-slot="{ field }">
-            <select v-bind="field" class="field__select">
-              <option value="">Não informar</option>
-              <option v-for="opt in priorityOptions" :key="opt.value" :value="opt.value">
-                {{ opt.label }}
-              </option>
-            </select>
+          <Field name="declaredPriority" as="select" class="field__select">
+            <option value="">Não informar</option>
+            <option v-for="opt in priorityOptions" :key="opt.value" :value="opt.value">
+              {{ opt.label }}
+            </option>
           </Field>
           <ErrorMessage name="declaredPriority" class="field__error" />
         </div>
