@@ -3,6 +3,8 @@ import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAppointment } from '@/composables/queries/useAppointments'
 import { useCancelAppointment } from '@/composables/mutations/useAppointmentMutations'
+import { useCreateMedicalRecordEntry, useUpdateMedicalRecordEntry } from '@/composables/mutations/useMedicalRecordMutations'
+import { useMedicalRecord } from '@/composables/queries/useMedicalRecords'
 import { usePermissions } from '@/composables/usePermissions'
 import AppCard from '@/components/ui/AppCard.vue'
 import AppErrorBoundary from '@/components/ui/AppErrorBoundary.vue'
@@ -11,16 +13,87 @@ import PriorityBadge from '@/components/shared/PriorityBadge.vue'
 import StatusBadge from '@/components/shared/StatusBadge.vue'
 import ConfirmDialog from '@/components/shared/ConfirmDialog.vue'
 import AppointmentActions from '@/components/appointments/AppointmentActions.vue'
+import MedicalRecordCard from '@/components/medical-records/MedicalRecordCard.vue'
+import MedicalRecordForm from '@/components/medical-records/MedicalRecordForm.vue'
+import { medicalRecordsApi } from '@/api/medicalRecords'
+import { getApiErrorMessage } from '@/api/client'
+import { useMutation, useQueryClient } from '@tanstack/vue-query'
+import { toast } from 'vue-sonner'
 import { formatDateTime, formatCpf, formatPhone, formatCurrency, formatPaymentMethod, formatDateTimeRelative } from '@/lib/formatters'
 import { PhArrowLeft, PhUser, PhStethoscope } from '@phosphor-icons/vue'
 import type { AppointmentStatus } from '@/api/types'
 
 const route = useRoute()
 const router = useRouter()
-const { canConfirm, canCallNext, canStartAppointment, canComplete } = usePermissions()
+const { canConfirm, canCallNext, canStartAppointment, canComplete, canManageMedicalRecords } = usePermissions()
 
 const id = computed(() => route.params.id as string)
 const { data: appointment, isLoading, isError, refetch } = useAppointment(id)
+
+// Medical records
+const patientId = computed(() => appointment.value?.patient?.id ?? '')
+const { data: medicalRecord } = useMedicalRecord(patientId)
+const showMedicalForm = ref(false)
+const editingEntryId = ref<string | undefined>()
+const editingEvolution = ref('')
+
+// Check if medical records section should be shown
+const showMedicalSection = computed(() => {
+  if (!canManageMedicalRecords.value) return false
+  // Show for IN_PROGRESS or later status (when evolution can be recorded)
+  return ['IN_PROGRESS', 'COMPLETED'].includes(appointment.value?.status ?? '')
+})
+
+const queryClient = useQueryClient()
+const createMutation = useMutation({
+  mutationFn: (data: { appointmentId: string; evolution: string }) =>
+    medicalRecordsApi.createEntry(data),
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ['medical-records', patientId.value] })
+    toast.success('Evolução clínica registrada')
+    showMedicalForm.value = false
+  },
+  onError: (error) => {
+    toast.error('Erro ao registrar evolução', { description: getApiErrorMessage(error) })
+  },
+})
+
+const updateMutation = useMutation({
+  mutationFn: ({ entryId, data }: { entryId: string; data: { evolution: string } }) =>
+    medicalRecordsApi.updateEntry(entryId, data),
+  onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ['medical-records', patientId.value] })
+    toast.success('Evolução clínica atualizada')
+    showMedicalForm.value = false
+  },
+  onError: (error) => {
+    toast.error('Erro ao atualizar evolução', { description: getApiErrorMessage(error) })
+  },
+})
+
+function openNewEvolution() {
+  editingEntryId.value = undefined
+  editingEvolution.value = ''
+  showMedicalForm.value = true
+}
+
+function openEditEvolution(entryId: string, evolution: string) {
+  editingEntryId.value = entryId
+  editingEvolution.value = evolution
+  showMedicalForm.value = true
+}
+
+function handleSaveEvolution(evolution: string) {
+  if (editingEntryId.value) {
+    updateMutation.mutate(
+      { entryId: editingEntryId.value, data: { evolution } }
+    )
+  } else {
+    createMutation.mutate(
+      { appointmentId: id.value, evolution }
+    )
+  }
+}
 
 const showCancelDialog = ref(false)
 const cancelReason = ref('')
@@ -177,6 +250,16 @@ function isStatusCurrent(current: AppointmentStatus, target: AppointmentStatus):
         <h2 class="card-title">Ações</h2>
         <AppointmentActions :appointment="appointment" @cancel="handleCancel" />
       </AppCard>
+
+      <AppCard v-if="showMedicalSection">
+        <div class="medical-header">
+          <h2 class="card-title">Prontuário</h2>
+          <AppButton v-if="appointment.status === 'IN_PROGRESS'" size="sm" @click="openNewEvolution">
+            Nova Evolução
+          </AppButton>
+        </div>
+        <MedicalRecordCard :entries="medicalRecord?.entries ?? []" />
+      </AppCard>
     </template>
 
     <ConfirmDialog
@@ -193,6 +276,14 @@ function isStatusCurrent(current: AppointmentStatus, target: AppointmentStatus):
         <textarea v-model="cancelReason" class="cancel-textarea" rows="3" placeholder="Informe o motivo..." />
       </div>
     </ConfirmDialog>
+
+    <MedicalRecordForm
+      v-model="showMedicalForm"
+      :appointment-id="id"
+      :entry-id="editingEntryId"
+      :initial-evolution="editingEvolution"
+      @save="handleSaveEvolution"
+    />
   </div>
 </template>
 
@@ -397,5 +488,12 @@ function isStatusCurrent(current: AppointmentStatus, target: AppointmentStatus):
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: var(--radius-lg);
+}
+
+.medical-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
 }
 </style>

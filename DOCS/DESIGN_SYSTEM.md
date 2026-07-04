@@ -2273,70 +2273,70 @@ Enviar para API: apenas dígitos (remover máscara antes do submit)
 ## 18. Checklist de Implementação
 
 ### Fase 1 — Fundação
-- [ ] Scaffold Vite + Vue 3 + TypeScript
-- [ ] Instalar e configurar Tailwind CSS + tokens CSS
-- [ ] Configurar TanStack Query com QueryClient
-- [ ] Configurar Pinia + authStore
-- [ ] Configurar Vue Router com guards
-- [ ] Implementar Axios client com interceptors
-- [ ] Implementar todas as funções `api/*.ts`
-- [ ] Definir todos os tipos em `api/types.ts`
+- [x] Scaffold Vite + Vue 3 + TypeScript
+- [x] Instalar e configurar Tailwind CSS + tokens CSS
+- [x] Configurar TanStack Query com QueryClient
+- [x] Configurar Pinia + authStore
+- [x] Configurar Vue Router com guards
+- [x] Implementar Axios client com interceptors
+- [x] Implementar todas as funções `api/*.ts`
+- [x] Definir todos os tipos em `api/types.ts`
 
 ### Fase 2 — Autenticação
-- [ ] LoginPage (layout split, form vee-validate)
-- [ ] Composable `useAuth` com login/logout
-- [ ] Guard de rota por role
+- [x] LoginPage (layout split, form vee-validate)
+- [x] Composable `useAuth` com login/logout
+- [x] Guard de rota por role
 
 ### Fase 3 — Componentes Base
-- [ ] AppButton (todas variantes)
-- [ ] AppInput + AppSelect + form fields
-- [ ] AppCard + AppModal
-- [ ] AppTable com skeleton
-- [ ] PriorityBadge (P1-P5)
-- [ ] StatusBadge (todos AppointmentStatus)
-- [ ] AppEmptyState + AppErrorBoundary
-- [ ] ConfirmDialog
-- [ ] AppSidebar + AppTopbar (AppLayout)
+- [x] AppButton (todas variantes)
+- [x] AppInput + AppSelect + form fields
+- [x] AppCard + AppModal
+- [x] AppTable com skeleton
+- [x] PriorityBadge (P1-P5)
+- [x] StatusBadge (todos AppointmentStatus)
+- [x] AppEmptyState + AppErrorBoundary
+- [x] ConfirmDialog
+- [x] AppSidebar + AppTopbar (AppLayout)
 
 ### Fase 4 — Dashboard
-- [ ] StatCards com contagens do dia
-- [ ] TodaySchedule com lista rápida
-- [ ] Links para ações rápidas
+- [x] StatCards com contagens do dia
+- [x] TodaySchedule com lista rápida
+- [x] Links para ações rápidas
 
 ### Fase 5 — Agendamentos (core)
-- [ ] AppointmentsPage com filtros
-- [ ] BookAppointmentForm (modal)
-- [ ] AppointmentDetailPage
-- [ ] AppointmentActions (contextuais por status)
-- [ ] CheckInForm (modal)
-- [ ] CancelForm (modal com reason)
+- [x] AppointmentsPage com filtros
+- [x] BookAppointmentForm (modal)
+- [x] AppointmentDetailPage
+- [x] AppointmentActions (contextuais por status)
+- [x] CheckInForm (modal)
+- [x] CancelForm (modal com reason)
 
 ### Fase 6 — Fila
-- [ ] QueuePage (polling 10s)
-- [ ] QueueCard com P1-P5 visual
-- [ ] CallNextButton
-- [ ] QueueStats (aguardando/em atendimento)
+- [x] QueuePage (polling 10s)
+- [x] QueueCard com P1-P5 visual
+- [x] CallNextButton
+- [x] QueueStats (aguardando/em atendimento)
 
 ### Fase 7 — CRUDs Administrativos
-- [ ] PatientsPage + PatientForm
-- [ ] ProfessionalsPage + ProfessionalForm
-- [ ] ServicesPage + ServiceForm
-- [ ] UsersPage + UserForm
+- [x] PatientsPage + PatientForm
+- [x] ProfessionalsPage + ProfessionalForm
+- [x] ServicesPage + ServiceForm
+- [x] UsersPage + UserForm
 
 ### Fase 8 — Auditoria
-- [ ] AuditLogsPage com filtros
-- [ ] Action labels em PT-BR
+- [x] AuditLogsPage com filtros
+- [x] Action labels em PT-BR
 
 ### Fase 9 — Público
-- [ ] PublicConfirmPage (token de email)
-- [ ] Estados: loading / sucesso / erro / token expirado
+- [x] PublicConfirmPage (token de email)
+- [x] Estados: loading / sucesso / erro / token expirado
 
 ### Fase 10 — Polimento
-- [ ] Transições de página (Vue Router)
-- [ ] Toasts com vue-sonner
-- [ ] Responsividade (sidebar collapse mobile)
-- [ ] Empty states em todas as tabelas
-- [ ] Error boundaries em todas as queries
+- [x] Transições de página (Vue Router)
+- [x] Toasts com vue-sonner
+- [x] Responsividade (sidebar collapse mobile)
+- [x] Empty states em todas as tabelas
+- [x] Error boundaries em todas as queries
 
 ---
 

@@ -24,6 +24,9 @@ export function usePermissions() {
     canManageServices: computed(() => role.value === 'ADMIN'),
     canViewAuditLogs: computed(() => role.value === 'ADMIN'),
 
+    canManageMedicalRecords: computed(() =>
+      ['ADMIN', 'PROFESSIONAL'].includes(role.value ?? '')),
+
     canConfirm: computed(() =>
       ['ADMIN', 'RECEPTIONIST'].includes(role.value ?? '')),
 

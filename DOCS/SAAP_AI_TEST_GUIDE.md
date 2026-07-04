@@ -1,9 +1,9 @@
-# SAAP MVP - Guia Completo de Teste para IA (Frontend/API Testing Playwith Swagger UI / curl / Postman)
+# SAAP MVP - Guia Completo de Teste para IA (Playwright)
 
 ## 📋 Sumário Executivo
 
-Documento único para IA ler e testar **toda a aplicação SAAP MVP** via frontend (Playwright), (Swagger UI) ou cliente HTTP (curl/Postman). Cobre:
-- Setup e inicialização
+Documento único para IA ler e testar **toda a aplicação SAAP MVP** via frontend (Playwright). Cobre:
+- Verificação de que a aplicação está rodando
 - Autenticação JWT
 - Todos os atores (roles) e permissões
 - Todos os endpoints REST com exemplos de request/response
@@ -17,52 +17,9 @@ Documento único para IA ler e testar **toda a aplicação SAAP MVP** via fronte
 
 ---
 
-## 🚀 Parte 1: Setup e Inicialização
+## 🚀 Parte 1: Verificação da Aplicação
 
-### 1.1 Pré-requisitos
-- **JDK 21** instalado e configurado
-- **Docker** em execução (necessário para Testcontainers nos testes de integração)
-- **PostgreSQL 15+** instalado (se for rodar localmente sem Docker)
-- **Maven 3.9+** (ou usar `./mvnw` incluído no projeto)
-
-### 1.2 Passos de Setup (Ignore este passo pois os servidores de desenvolvimento já estão rodando iniciado pelo o usuário, e se nao estiver rodando, cobrar do usuário para iniciar o servidor de desenvolvimento)
-
-```bash
-# 1. Entre no projeto
-#cd /home/bello/Projetos/saap-mvp
-
-# 2. Compile e baixe dependências
-#./mvnw clean compile
-
-# 3. Crie o arquivo .env baseado no modelo
-#cp .env.example .env
-
-# 4. Configure o .env (valores padrão funcionam para dev local):
-# DB_HOST=localhost
-# DB_PORT=5432
-# DB_NAME=saap_db
-# DATABASE_USERNAME=postgres
-# DATABASE_PASSWORD=postgres
-# PORT=8080
-# JWT_SECRET=meu_segredo_super_secreto_para_assinatura_do_token_jwt
-# JWT_EXPIRATION=86400000
-
-# 5. Inicie o PostgreSQL (se não estiver rodando):
-# - Via Docker: docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:15
-# - Via instalação local: sudo service postgresql start
-#
-# Observação: não é necessário criar o banco manualmente — o
-# DatabaseInitializerListener cria o banco definido em DB_NAME automaticamente
-# na primeira inicialização, caso ele não exista.
-
-# 6. Inicie a aplicação
-#./mvnw spring-boot:run
-
-# Aguarde até ver: "Started SaapMvpApplication in X.XXX seconds"
-# A aplicação estará em: http://localhost:8080
-```
-
-### 1.3 Verificar que está Rodando
+### 1.1 Verificar que está Rodando
 
 ```bash
 curl http://localhost:8080/swagger-ui.html
@@ -70,19 +27,6 @@ curl http://localhost:8080/swagger-ui.html
 
 curl http://localhost:8080/actuator/health
 # Deve retornar {"status":"UP"}
-```
-
-### 1.4 Rodar Testes Automatizados (opcional)
-
-```bash
-./mvnw clean test
-```
-
-### 1.5 Gerar Pacote WAR (opcional)
-
-```bash
-./mvnw clean package
-# WAR gerado em target/
 ```
 
 ---
@@ -425,6 +369,7 @@ curl -X DELETE http://localhost:8080/api/v1/patients/$PATIENT_ID \
 - `specialty`: Especialidade médica (enum)
 - `email`: Formato válido
 - `phone`: Não vazio
+- `userId`: **obrigatório para o fluxo de prontuário** — UUID do usuário (role `PROFESSIONAL`, ver Parte 4.1) que vai logar como esse profissional. Sem esse vínculo, `GET/POST/PUT /api/v1/medical-records/*` retornam `400 Bad Request` ("Profissional não cadastrado para o usuário logado"), pois o controller resolve o profissional autenticado via `findByUserId`.
 
 ```bash
 curl -X POST http://localhost:8080/api/v1/professionals \
@@ -435,7 +380,8 @@ curl -X POST http://localhost:8080/api/v1/professionals \
     "crm": "123456",
     "specialty": "CARDIOLOGY",
     "email": "ana.cardio@clinica.com",
-    "phone": "11987654321"
+    "phone": "11987654321",
+    "userId": "'$PROFESSIONAL_USER_ID'"
   }'
 ```
 
@@ -448,6 +394,7 @@ curl -X POST http://localhost:8080/api/v1/professionals \
   "specialty": "CARDIOLOGY",
   "email": "ana.cardio@clinica.com",
   "phone": "11987654321",
+  "userId": "550e8400-e29b-41d4-a716-446655440099",
   "active": true,
   "createdAt": "2026-07-03T10:20:00Z"
 }
@@ -674,7 +621,7 @@ curl -X PUT http://localhost:8080/api/v1/appointments/$APPOINTMENT_ID/confirm \
 #### 4.5.5 CHECK-IN - Registrar Presença
 
 **Requer:** `RECEPTIONIST`
-**Transição:** `CONFIRMED` → `CHECKED_IN`
+**Transição:** `CONFIRMED` → `ARRIVED`
 **Observação:** Validação documental de prioridade legal (ex: idoso, gestante, deficiência)
 
 ```bash
@@ -692,7 +639,7 @@ curl -X PUT http://localhost:8080/api/v1/appointments/$APPOINTMENT_ID/check-in \
 ```json
 {
   "id": "550e8400-e29b-41d4-a716-446655440005",
-  "status": "CHECKED_IN",
+  "status": "ARRIVED",
   "priority": "NORMAL",
   "queuePosition": 1
 }
@@ -701,6 +648,8 @@ curl -X PUT http://localhost:8080/api/v1/appointments/$APPOINTMENT_ID/check-in \
 #### 4.5.6 NEXT - Chamar Próximo Paciente (Fila)
 
 **Requer:** `PROFESSIONAL`
+**Transição:** `ARRIVED` → `CALLING`
+**Obrigatório:** este passo é pré-requisito de `/start` — `/start` só aceita transição a partir de `CALLING`, nunca direto de `ARRIVED`.
 **Lógica:** Retorna próximo paciente aguardando na fila baseado em score de prioridade
 
 ```bash
@@ -724,7 +673,8 @@ curl -X POST http://localhost:8080/api/v1/appointments/next \
 #### 4.5.7 START - Iniciar Atendimento
 
 **Requer:** `PROFESSIONAL`
-**Transição:** `CHECKED_IN` → `IN_PROGRESS`
+**Transição:** `CALLING` → `IN_PROGRESS`
+**Pré-requisito:** chamar `POST /appointments/next` (4.5.6) antes — chamar `/start` direto a partir de `ARRIVED` retorna `400 Bad Request` ("Transição de estado inválida de ARRIVED para IN_PROGRESS").
 
 ```bash
 curl -X PUT http://localhost:8080/api/v1/appointments/$APPOINTMENT_ID/start \
@@ -792,16 +742,20 @@ curl -X PUT http://localhost:8080/api/v1/appointments/$APPOINTMENT_ID/cancel \
 #### Máquina de Estados Completa
 
 ```
-PENDING → CONFIRMED → CHECKED_IN → IN_PROGRESS → COMPLETED
-   ↓            ↓
-CANCELLED   CANCELLED
+PENDING → CONFIRMED → ARRIVED → CALLING → IN_PROGRESS → COMPLETED
+   ↓            ↓         ↓
+CANCELLED   CANCELLED  CANCELLED
+                (CONFIRMED também pode ir a NO_SHOW)
 ```
+
+Transições válidas (`Appointment.transitionTo`): `PENDING→{CONFIRMED, CANCELLED, PENDING_RESPONSE}`, `PENDING_RESPONSE→{CONFIRMED, CANCELLED}`, `CONFIRMED→{ARRIVED, CANCELLED, NO_SHOW}`, `ARRIVED→{CALLING, CANCELLED}`, `CALLING→{IN_PROGRESS}`, `IN_PROGRESS→{COMPLETED}`. `COMPLETED`, `CANCELLED`, `NO_SHOW` são estados finais.
 
 ---
 
 ### 4.6 PRONTUÁRIO / REGISTRO CLÍNICO (`/api/v1/medical-records`)
 
 **Requer:** `PROFESSIONAL` (acesso exclusivo). Toda leitura e escrita é auditada.
+**Pré-requisito obrigatório:** o registro de `Professional` usado no atendimento precisa ter o campo `userId` apontando para o usuário logado (ver 4.3.1). O controller resolve o profissional autenticado via `findByUserId`; sem esse vínculo, qualquer chamada retorna `400 Bad Request` ("Profissional não cadastrado para o usuário logado").
 
 #### 4.6.1 GET - Consultar Prontuário do Paciente
 
@@ -939,6 +893,7 @@ curl -X GET http://localhost:8080/api/v1/audit-logs \
 - [ ] **Login:** Obter token JWT com usuário admin (`john.nobody@email.com` / `SenhaForte123!`)
 - [ ] **Header:** Todos os requests protegidos incluem `Authorization: Bearer <TOKEN>`
 - [ ] **Criar usuários de teste** para os outros 4 roles (RECEPTIONIST, PROFESSIONAL, ASSISTANT, PATIENT)
+- [ ] **Vincular o usuário PROFESSIONAL** ao cadastro em `/api/v1/professionals` via campo `userId` (ver 4.3.1) — obrigatório para os testes de prontuário (5.7) funcionarem
 
 ### 5.2 Testes de Usuários
 
@@ -980,9 +935,9 @@ curl -X GET http://localhost:8080/api/v1/audit-logs \
 
 - [ ] **CREATE:** Agendar consulta (status = PENDING)
 - [ ] **CONFIRM:** Confirmar agendamento (status = CONFIRMED)
-- [ ] **CHECK-IN:** Registrar presença (status = CHECKED_IN)
-- [ ] **NEXT:** Chamar próximo paciente da fila (retorna appointmentId)
-- [ ] **START:** Iniciar atendimento (status = IN_PROGRESS)
+- [ ] **CHECK-IN:** Registrar presença (status = ARRIVED)
+- [ ] **NEXT:** Chamar próximo paciente da fila (status = CALLING, retorna appointmentId) — **obrigatório antes de START**
+- [ ] **START:** Iniciar atendimento (status = IN_PROGRESS, só a partir de CALLING)
 - [ ] **COMPLETE:** Completar consulta com evolução clínica (status = COMPLETED)
 - [ ] **CANCEL (fluxo alternativo):** Cancelar agendamento em PENDING/CONFIRMED
 - [ ] **LIST com filtros:** Testar `professionalId`, `patientId`, `fromDate`, `toDate`
@@ -1151,11 +1106,14 @@ URGENT - Urgência (score: 300)
 ### Status de Agendamento
 ```
 PENDING - Agendado, aguardando confirmação
+PENDING_RESPONSE - Aguardando resposta do paciente (ex: lista de espera)
 CONFIRMED - Confirmado pela recepção
-CHECKED_IN - Paciente fez check-in
+ARRIVED - Paciente fez check-in (chegou)
+CALLING - Chamado pelo profissional via /appointments/next
 IN_PROGRESS - Atendimento em andamento
 COMPLETED - Atendimento finalizado
 CANCELLED - Cancelado
+NO_SHOW - Paciente não compareceu
 ```
 
 ---
@@ -1193,7 +1151,7 @@ CANCELLED - Cancelado
 Este documento fornece **instrução completa e única** para uma IA testar a aplicação SAAP MVP via
 frontend/API. A IA deve:
 
-1. Seguir o setup na **Parte 1**
+1. Verificar a aplicação na **Parte 1**
 2. Autenticar na **Parte 2**
 3. Exercitar todos os endpoints na **Parte 4** (CREATE, READ, UPDATE, DELETE em cada entidade, com todos os 5 atores)
 4. Executar o checklist completo da **Parte 5**
@@ -1204,5 +1162,8 @@ frontend/API. A IA deve:
 ---
 
 **Gerado em:** 2026-07-03
-**Versão:** SAAP MVP v1.0
+**Atualizado em:** 2026-07-04 — removido setup/build (não aplicável ao teste via frontend), corrigidos status de agendamento (ARRIVED/CALLING em vez de CHECKED_IN) e passo obrigatório `/appointments/next` antes de `/start`, adicionado `userId` obrigatório na criação de profissional para o fluxo de prontuário
+**Versão:** SAAP MVP v1.1
 **Autor:** Sistema de Documentação Automática
+
+---

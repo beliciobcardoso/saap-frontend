@@ -203,3 +203,31 @@ export interface PageResponse<T> {
   number: number
   size: number
 }
+
+// ─── PRONTUÁRIO / REGISTRO CLÍNICO ──────────────────────
+
+export interface MedicalRecordEntryResponse {
+  id: string
+  medicalRecordId: string
+  appointmentId: string
+  professionalId: string
+  evolution: string
+  createdAt: string
+  updatedAt: string
+}
+
+export interface MedicalRecordResponse {
+  id: string
+  patientId: string
+  createdAt: string
+  entries: MedicalRecordEntryResponse[]
+}
+
+export interface CreateMedicalRecordEntryRequest {
+  appointmentId: string
+  evolution: string
+}
+
+export interface UpdateMedicalRecordEntryRequest {
+  evolution: string
+}
