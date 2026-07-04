@@ -1,5 +1,2365 @@
 {
   "version": "2.14",
-  "children": [],
+  "children": [
+    {
+      "type": "frame",
+      "id": "dIzLn",
+      "x": 0,
+      "y": 0,
+      "name": "Medico Dashboard",
+      "clip": true,
+      "width": 1440,
+      "height": 1100,
+      "fill": "$bg-page",
+      "children": [
+        {
+          "type": "frame",
+          "id": "N8Pxj",
+          "name": "Sidebar",
+          "width": 240,
+          "height": "fill_container",
+          "fill": "$bg-sidebar",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "hhkJR",
+              "name": "Logo",
+              "width": "fill_container",
+              "height": 64,
+              "fill": "#0F172A",
+              "padding": [
+                0,
+                20
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "A8ZrO",
+                  "name": "LogoText",
+                  "fill": "$text-white",
+                  "content": "SAAP Med",
+                  "fontFamily": "$font-body",
+                  "fontSize": 18,
+                  "fontWeight": "bold"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "yAgl8",
+              "name": "UserInfo",
+              "width": "fill_container",
+              "height": 72,
+              "gap": 12,
+              "padding": [
+                16,
+                20
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "pxihE",
+                  "name": "Avatar",
+                  "fill": "$accent-blue",
+                  "width": 40,
+                  "height": 40
+                },
+                {
+                  "type": "frame",
+                  "id": "pjxgp",
+                  "name": "UserCol",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NfwqK",
+                      "name": "DoctorName",
+                      "fill": "$text-white",
+                      "content": "Dr. João Silva",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "I3J99",
+                      "name": "DoctorSpec",
+                      "fill": "$text-muted",
+                      "content": "Cardiologia",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "r3VdB2",
+              "name": "Nav",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 4,
+              "padding": [
+                12,
+                8
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "z5nHj",
+                  "name": "NavDash",
+                  "width": "fill_container",
+                  "height": 40,
+                  "fill": "$accent-blue",
+                  "cornerRadius": 8,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "s7VSs",
+                      "fill": "$text-white",
+                      "content": "Dashboard",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "dcZvJ",
+                  "name": "NavAgenda",
+                  "width": "fill_container",
+                  "height": 40,
+                  "cornerRadius": 8,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zKpBh",
+                      "fill": "$text-muted",
+                      "content": "Agenda",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WSzc1",
+                  "name": "NavSala",
+                  "width": "fill_container",
+                  "height": 40,
+                  "cornerRadius": 8,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "HP7W4",
+                      "fill": "$text-muted",
+                      "content": "Sala de Espera",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vf1Ct",
+                  "name": "NavAtend",
+                  "width": "fill_container",
+                  "height": 40,
+                  "cornerRadius": 8,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rz1rs",
+                      "fill": "$text-muted",
+                      "content": "Atendimentos",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "MPpJe",
+                  "name": "NavPront",
+                  "width": "fill_container",
+                  "height": 40,
+                  "cornerRadius": 8,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jzgBf",
+                      "fill": "$text-muted",
+                      "content": "Prontuário",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zRVHB",
+                  "name": "NavEmerg",
+                  "width": "fill_container",
+                  "height": 40,
+                  "fill": "$accent-red",
+                  "cornerRadius": 8,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "GjFbH",
+                      "fill": "$text-white",
+                      "content": "Emergência",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "dt9w6",
+          "name": "ContentArea",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "LEoYg",
+              "name": "Header",
+              "width": "fill_container",
+              "height": 56,
+              "fill": "$bg-card",
+              "padding": [
+                0,
+                24
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "u7ZobF",
+                  "name": "PageTitle",
+                  "fill": "$text-primary",
+                  "content": "Dashboard",
+                  "fontFamily": "$font-body",
+                  "fontSize": 22,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "frame",
+                  "id": "j9CGGY",
+                  "name": "Spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "r9lSNc",
+                  "name": "DateLabel",
+                  "fill": "$text-secondary",
+                  "content": "04/07/2026",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "ZHhEP",
+                  "name": "Spacer",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "hOtdJ",
+                  "name": "UserInfoHeader",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "htbRp",
+                      "name": "AvatarSmall",
+                      "fill": "$accent-blue",
+                      "width": 32,
+                      "height": 32
+                    },
+                    {
+                      "type": "text",
+                      "id": "FmcwV",
+                      "fill": "$text-primary",
+                      "content": "Dr. João Silva",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "KTqKU",
+                      "fill": "$text-muted",
+                      "content": "•",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "R71Cg",
+                      "fill": "$accent-blue",
+                      "content": "Consultório 101",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "pFw4i",
+                  "name": "LogoutBtn",
+                  "fill": "#FEE2E2",
+                  "cornerRadius": 6,
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CLjjR",
+                      "fill": "$accent-red",
+                      "content": "Sair",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "z4m5r",
+              "name": "StatsRow",
+              "width": "fill_container",
+              "gap": 16,
+              "padding": [
+                16,
+                24,
+                0,
+                24
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "nou8F",
+                  "name": "StatAtendimentos",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": [
+                    16,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "x2U90",
+                      "fill": "$text-secondary",
+                      "content": "Atendimentos Hoje",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jxDFZ",
+                      "name": "StatAtendValue",
+                      "fill": "$text-primary",
+                      "content": "12",
+                      "fontFamily": "$font-body",
+                      "fontSize": 32,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "o40Iy",
+                      "fill": "$accent-green",
+                      "content": "4 concluídos",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "YoQYL",
+                  "name": "StatSala",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": [
+                    16,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "M3DbEI",
+                      "fill": "$text-secondary",
+                      "content": "Sala de Espera",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Vp7Vu",
+                      "name": "StatSalaValue",
+                      "fill": "$accent-yellow",
+                      "content": "3",
+                      "fontFamily": "$font-body",
+                      "fontSize": 32,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "B2IIdU",
+                      "fill": "$accent-yellow",
+                      "content": "aguardando",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wwuun",
+                  "name": "StatProximo",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": [
+                    16,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "eiqQl",
+                      "fill": "$text-secondary",
+                      "content": "Próximo Paciente",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZaKOC",
+                      "name": "StatProxValue",
+                      "fill": "$text-primary",
+                      "content": "Maria Santos",
+                      "fontFamily": "$font-body",
+                      "fontSize": 16,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "text",
+                      "id": "DoDd2",
+                      "fill": "$accent-blue",
+                      "content": "Consulta 14:30",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zYitg",
+                  "name": "StatEmerg",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": [
+                    16,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "udEsM",
+                      "fill": "$text-secondary",
+                      "content": "Emergências",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "J9GhI",
+                      "name": "StatEmergValue",
+                      "fill": "$accent-green",
+                      "content": "0",
+                      "fontFamily": "$font-body",
+                      "fontSize": 32,
+                      "fontWeight": "bold"
+                    },
+                    {
+                      "type": "text",
+                      "id": "UzxHH",
+                      "fill": "$accent-green",
+                      "content": "nenhuma",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ryUXe",
+              "name": "PanelsRow",
+              "width": "fill_container",
+              "gap": 16,
+              "padding": [
+                16,
+                24,
+                0,
+                24
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ViyXz",
+                  "name": "SalaPanel",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "OorCC",
+                      "name": "SalaHeader",
+                      "width": "fill_container",
+                      "height": 64,
+                      "fill": "#F1F5F9",
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "kaHpg",
+                          "fill": "$text-primary",
+                          "content": "Sala de Espera",
+                          "fontFamily": "$font-body",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "yW03d",
+                          "name": "Spacer",
+                          "width": "fill_container",
+                          "height": 1
+                        },
+                        {
+                          "type": "frame",
+                          "id": "yvwUT",
+                          "name": "CallBtn",
+                          "fill": "$accent-blue",
+                          "cornerRadius": 6,
+                          "padding": [
+                            8,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "h5UwJr",
+                              "fill": "$text-white",
+                              "content": "Chamar Próximo",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "U8WWS",
+                      "name": "AlertEmergencia",
+                      "width": "fill_container",
+                      "fill": "#FEF2F2",
+                      "gap": 8,
+                      "padding": [
+                        10,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "A8z4K",
+                          "fill": "$accent-red",
+                          "content": "1 urgência pendente — paciente encaixado no final da fila",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "sRACj",
+                      "name": "SalaList",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "P0B9uJ",
+                          "name": "PriorityInfo",
+                          "width": "fill_container",
+                          "fill": "#EFF6FF",
+                          "cornerRadius": 6,
+                          "gap": 8,
+                          "padding": [
+                            8,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "AzKrY",
+                              "fill": "$accent-blue",
+                              "content": "Fila por prioridade — o próximo paciente é automaticamente determinado pelo sistema",
+                              "fontFamily": "$font-body",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "A0jUbJ",
+                          "name": "PatientAna",
+                          "width": "fill_container",
+                          "fill": "#FEF3C7",
+                          "cornerRadius": 8,
+                          "gap": 12,
+                          "padding": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "E21Gh3",
+                              "name": "P1Info",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "UKX1b",
+                                  "fill": "$text-primary",
+                                  "content": "Ana Oliveira",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "HWAcA",
+                                  "fill": "$text-secondary",
+                                  "content": "Consulta 14:00 • Retorno",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "RVnwF",
+                                  "fill": "$accent-yellow",
+                                  "content": "Aguardando 15min",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "CNsJ5",
+                              "layoutPosition": "absolute",
+                              "x": 470,
+                              "y": 10,
+                              "name": "PriorityP2",
+                              "fill": "#F59E0B",
+                              "cornerRadius": 4,
+                              "padding": [
+                                3,
+                                8
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "RlnxM",
+                                  "fill": "$text-white",
+                                  "content": "P2",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 10,
+                                  "fontWeight": "bold"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "wu5Td",
+                          "name": "PatientCarlos",
+                          "width": "fill_container",
+                          "fill": "$bg-card",
+                          "cornerRadius": 8,
+                          "gap": 12,
+                          "padding": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "svI9f",
+                              "name": "P2Info",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "xAOJh",
+                                  "fill": "$text-primary",
+                                  "content": "Carlos Pereira",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "GJhgE",
+                                  "fill": "$text-secondary",
+                                  "content": "Consulta 14:30 • Primeira vez",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "ipa1Q",
+                                  "fill": "$text-muted",
+                                  "content": "Aguardando 5min",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "yzesa",
+                              "layoutPosition": "absolute",
+                              "x": 470,
+                              "y": 10,
+                              "name": "PriorityP3",
+                              "fill": "#F97316",
+                              "cornerRadius": 4,
+                              "padding": [
+                                3,
+                                8
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "pUF27",
+                                  "fill": "$text-white",
+                                  "content": "P3",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 10,
+                                  "fontWeight": "bold"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "AUlvO",
+                          "name": "PatientLucia",
+                          "width": "fill_container",
+                          "fill": "$bg-card",
+                          "cornerRadius": 8,
+                          "gap": 12,
+                          "padding": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "LGFGe",
+                              "name": "P3Info",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "cSfN4",
+                                  "fill": "$text-primary",
+                                  "content": "Lucia Fernandes",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "W9VRO",
+                                  "fill": "$text-secondary",
+                                  "content": "Consulta 15:00 • Retorno",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "S704N",
+                                  "fill": "$text-muted",
+                                  "content": "Aguardando 2min",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "QLB2D",
+                              "layoutPosition": "absolute",
+                              "x": 470,
+                              "y": 10,
+                              "name": "PriorityP4",
+                              "fill": "#64748B",
+                              "cornerRadius": 4,
+                              "padding": [
+                                3,
+                                8
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "D92Lz",
+                                  "fill": "$text-white",
+                                  "content": "P4",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 10,
+                                  "fontWeight": "bold"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ram6U",
+                          "name": "PatientEmergencia",
+                          "width": "fill_container",
+                          "fill": "#FEE2E2",
+                          "cornerRadius": 8,
+                          "gap": 12,
+                          "padding": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "yLRSw",
+                              "name": "UrgInfo",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "ex1qS",
+                                  "fill": "$text-primary",
+                                  "content": "Marcos Souza",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "jQfCu",
+                                  "fill": "$accent-red",
+                                  "content": "Emergência • Dor abdominal aguda",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "x56BG3",
+                                  "fill": "$text-muted",
+                                  "content": "Encaixado pelo sistema • Final da fila",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 11,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "nLXx5",
+                              "name": "UrgBadge",
+                              "fill": "$accent-red",
+                              "cornerRadius": 4,
+                              "padding": [
+                                4,
+                                10
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "fUATh",
+                                  "fill": "$text-white",
+                                  "content": "EMERG",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 10,
+                                  "fontWeight": "bold"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "JZYyV",
+                  "name": "AgendaPanel",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ONMFy",
+                      "name": "AgendaHeader",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "#F1F5F9",
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "U8IrB",
+                          "fill": "$text-primary",
+                          "content": "Agenda do Dia",
+                          "fontFamily": "$font-body",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "bVw6q",
+                          "name": "Spacer",
+                          "width": "fill_container",
+                          "height": 1
+                        },
+                        {
+                          "type": "frame",
+                          "id": "z3Xa8",
+                          "name": "AddDispBtn",
+                          "fill": "$accent-green",
+                          "cornerRadius": 6,
+                          "padding": [
+                            6,
+                            12
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "B7sMF",
+                              "fill": "$text-white",
+                              "content": "+ Disponibilidade",
+                              "fontFamily": "$font-body",
+                              "fontSize": 11,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "nVhaa",
+                      "name": "AgendaList",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "KJ43K",
+                          "name": "Schedule1",
+                          "width": "fill_container",
+                          "fill": "#DCFCE7",
+                          "cornerRadius": 8,
+                          "padding": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "oyOSi",
+                              "name": "S1Info",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "z7Iewd",
+                                  "fill": "$text-primary",
+                                  "content": "08:00 - 12:00",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "aWgHC",
+                                  "fill": "$text-secondary",
+                                  "content": "Consultório 101",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "DHXYb",
+                              "fill": "$accent-green",
+                              "content": "Em andamento",
+                              "fontFamily": "$font-body",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "z1dfG",
+                          "name": "Schedule2",
+                          "width": "fill_container",
+                          "fill": "$bg-card",
+                          "cornerRadius": 8,
+                          "padding": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "v0qFz2",
+                              "name": "S2Info",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "x1VzZn",
+                                  "fill": "$text-primary",
+                                  "content": "14:00 - 18:00",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "K9DcJA",
+                                  "fill": "$text-secondary",
+                                  "content": "Consultório 102",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "U3vgn",
+                              "fill": "$accent-yellow",
+                              "content": "Aguardando",
+                              "fontFamily": "$font-body",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "m5cFO4",
+                          "name": "Schedule3",
+                          "width": "fill_container",
+                          "fill": "#F1F5F9",
+                          "cornerRadius": 8,
+                          "padding": 12,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "BfJuF",
+                              "name": "S3Info",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "BLB8r",
+                                  "fill": "$text-secondary",
+                                  "content": "19:00 - 21:00",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "lLxwn",
+                                  "fill": "$text-secondary",
+                                  "content": "Teleconsulta",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "m4c5v",
+                              "fill": "$text-muted",
+                              "content": "Futuro",
+                              "fontFamily": "$font-body",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "g7fnx",
+              "name": "AtendimentoSection",
+              "width": "fill_container",
+              "layout": "vertical",
+              "padding": [
+                16,
+                24
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "RE4yC",
+                  "name": "AtendimentoCard",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 12,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "r0gtm",
+                      "name": "AtendHeader",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "#F1F5F9",
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "lC23O",
+                          "fill": "$text-primary",
+                          "content": "Atendimento em Andamento",
+                          "fontFamily": "$font-body",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "scst7",
+                          "name": "Spacer",
+                          "width": "fill_container",
+                          "height": 1
+                        },
+                        {
+                          "type": "frame",
+                          "id": "dagtt",
+                          "name": "ConsultorioBadge",
+                          "fill": "$accent-blue",
+                          "cornerRadius": 6,
+                          "padding": [
+                            6,
+                            14
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "lpYbq",
+                              "fill": "$text-white",
+                              "content": "Consultório 101",
+                              "fontFamily": "$font-body",
+                              "fontSize": 12,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "SpZxv",
+                      "name": "AtendBody",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "nkE2c",
+                          "name": "CurrentPatientCard",
+                          "width": 340,
+                          "fill": "#EFF6FF",
+                          "cornerRadius": 12,
+                          "layout": "vertical",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "oPL0z",
+                              "name": "PHeader",
+                              "width": "fill_container",
+                              "fill": "$accent-blue",
+                              "cornerRadius": 12,
+                              "layout": "vertical",
+                              "gap": 4,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "zJMK6",
+                                  "fill": "$text-white",
+                                  "content": "Roberto Almeida",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 18,
+                                  "fontWeight": "bold"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "TTK0U",
+                                  "fill": "#BFDBFE",
+                                  "content": "CPF: 123.456.789-00",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 12,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "n9pyL",
+                              "name": "PDetails",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 6,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "GlMx0",
+                                  "fill": "$text-primary",
+                                  "content": "Idade: 58 anos",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "FeDkU",
+                                  "fill": "$text-primary",
+                                  "content": "Tel: (11) 99999-1234",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Rys02",
+                                  "fill": "$text-primary",
+                                  "content": "Convênio: Unimed",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "TqIoP",
+                                  "fill": "$text-secondary",
+                                  "content": "Última consulta: 15/06/2026",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "Ip31i",
+                                  "fill": "$accent-red",
+                                  "content": "Motivo: Dor no peito",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 13,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "V6VKRx",
+                              "name": "PActions",
+                              "width": "fill_container",
+                              "gap": 8,
+                              "padding": [
+                                0,
+                                16,
+                                16,
+                                16
+                              ],
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "am1Jg",
+                                  "name": "ProntBtn",
+                                  "width": "fill_container",
+                                  "fill": "$accent-blue",
+                                  "cornerRadius": 8,
+                                  "padding": [
+                                    10,
+                                    0
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "KxAxh",
+                                      "fill": "$text-white",
+                                      "content": "Prontuário",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 12,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "vvh3C",
+                                  "name": "FinalBtn",
+                                  "width": "fill_container",
+                                  "fill": "$accent-red",
+                                  "cornerRadius": 8,
+                                  "padding": [
+                                    10,
+                                    0
+                                  ],
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "VlUSZ",
+                                      "fill": "$text-white",
+                                      "content": "Finalizar Atendimento",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 12,
+                                      "fontWeight": "500"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tJCTu",
+                          "name": "ProntuarioPanel",
+                          "width": "fill_container",
+                          "fill": "$surface-alt",
+                          "cornerRadius": 12,
+                          "layout": "vertical",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "Bwidm",
+                              "name": "ProntHeader",
+                              "width": "fill_container",
+                              "height": 40,
+                              "fill": "$bg-card",
+                              "cornerRadius": 12,
+                              "padding": [
+                                0,
+                                16
+                              ],
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "q73iz3",
+                                  "fill": "$text-primary",
+                                  "content": "Prontuário — Roberto Almeida",
+                                  "fontFamily": "$font-body",
+                                  "fontSize": 14,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "U43ft",
+                              "name": "ProntForm",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 12,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "MkXPP",
+                                  "name": "FieldQueixa",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 4,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "XjDFU",
+                                      "fill": "$text-secondary",
+                                      "content": "Queixa Principal",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 12,
+                                      "fontWeight": "500"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "MyXt5",
+                                      "name": "QueixaInput",
+                                      "width": "fill_container",
+                                      "fill": "$bg-card",
+                                      "cornerRadius": 6,
+                                      "layout": "vertical",
+                                      "padding": [
+                                        8,
+                                        10
+                                      ],
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "SGs9N",
+                                          "fill": "$text-primary",
+                                          "content": "Dor torácica tipo pressão, irradiando para braço esquerdo, há 2 horas",
+                                          "fontFamily": "$font-body",
+                                          "fontSize": 13,
+                                          "fontWeight": "normal"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "M0B2g",
+                                  "name": "FieldExame",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 4,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "p1dT1",
+                                      "fill": "$text-secondary",
+                                      "content": "Exame Físico",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 12,
+                                      "fontWeight": "500"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "L1VyPz",
+                                      "name": "ExameInput",
+                                      "width": "fill_container",
+                                      "fill": "$bg-card",
+                                      "cornerRadius": 6,
+                                      "layout": "vertical",
+                                      "padding": [
+                                        8,
+                                        10
+                                      ],
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "H1zED",
+                                          "fill": "$text-primary",
+                                          "content": "PA: 150x90mmHg | FC: 88bpm | SpO2: 96% | Ausculta: ritmo regular",
+                                          "fontFamily": "$font-body",
+                                          "fontSize": 13,
+                                          "fontWeight": "normal"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "ZKiLD",
+                                  "name": "FieldDiag",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 4,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "o4fo8",
+                                      "fill": "$text-secondary",
+                                      "content": "Hipótese Diagnóstica",
+                                      "fontFamily": "$font-body",
+                                      "fontSize": 12,
+                                      "fontWeight": "500"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "uEbaM",
+                                      "name": "DiagInput",
+                                      "width": "fill_container",
+                                      "fill": "$bg-card",
+                                      "cornerRadius": 6,
+                                      "layout": "vertical",
+                                      "padding": [
+                                        8,
+                                        10
+                                      ],
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "gqRq4",
+                                          "fill": "$accent-red",
+                                          "content": "Dor torácica atípica — Investigar SCA",
+                                          "fontFamily": "$font-body",
+                                          "fontSize": 13,
+                                          "fontWeight": "normal"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "xCZVL",
+      "x": 1446,
+      "y": -5,
+      "name": "Tela Seleção Consultório",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "$bg-page",
+      "layout": "vertical",
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Z46sc",
+          "name": "CenterCard",
+          "width": 560,
+          "fill": "$bg-card",
+          "cornerRadius": 16,
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "UJg9j",
+              "name": "HeaderCard",
+              "width": "fill_container",
+              "fill": "$accent-blue",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                32,
+                32,
+                24,
+                32
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "A2eoJM",
+                  "fill": "$text-white",
+                  "content": "Bom dia, Dr. João",
+                  "fontFamily": "$font-body",
+                  "fontSize": 24,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "yZade",
+                  "fill": "#BFDBFE",
+                  "content": "Selecione o consultório para iniciar o atendimento",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "qiEef",
+              "name": "BodyCard",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                24,
+                32
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "LgTVZ",
+                  "fill": "$text-primary",
+                  "content": "Consultórios Disponíveis",
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "F6hrR",
+                  "name": "Consultorio101",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 10,
+                  "stroke": "$border-light",
+                  "strokeWidth": 1,
+                  "gap": 16,
+                  "padding": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "o1RzZ",
+                      "name": "NumBadge",
+                      "width": 48,
+                      "height": 48,
+                      "fill": "$accent-blue",
+                      "cornerRadius": 10,
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "VWzSw",
+                          "fill": "$text-white",
+                          "content": "101",
+                          "fontFamily": "$font-body",
+                          "fontSize": 18,
+                          "fontWeight": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "hjHE7",
+                      "name": "Info",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "mpJkc",
+                          "fill": "$text-primary",
+                          "content": "Consultório 101",
+                          "fontFamily": "$font-body",
+                          "fontSize": 15,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "bqv6j",
+                          "fill": "$text-secondary",
+                          "content": "Bloco A - 1º Andar",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "t8D9bV",
+                      "name": "StatusTag",
+                      "fill": "#DCFCE7",
+                      "cornerRadius": 20,
+                      "padding": [
+                        4,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bghPP",
+                          "fill": "$accent-green",
+                          "content": "Disponível",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uNFHL",
+                  "name": "Consultorio102",
+                  "width": "fill_container",
+                  "fill": "$bg-card",
+                  "cornerRadius": 10,
+                  "stroke": "$border-light",
+                  "strokeWidth": 1,
+                  "gap": 16,
+                  "padding": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "N6LHa3",
+                      "name": "NumBadge",
+                      "width": 48,
+                      "height": 48,
+                      "fill": "$accent-blue",
+                      "cornerRadius": 10,
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ynL66",
+                          "fill": "$text-white",
+                          "content": "102",
+                          "fontFamily": "$font-body",
+                          "fontSize": 18,
+                          "fontWeight": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "bQ9ZR",
+                      "name": "Info",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "gonjK",
+                          "fill": "$text-primary",
+                          "content": "Consultório 102",
+                          "fontFamily": "$font-body",
+                          "fontSize": 15,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "VoxLV",
+                          "fill": "$text-secondary",
+                          "content": "Bloco A - 1º Andar",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vgMzq",
+                      "name": "StatusTag",
+                      "fill": "#DCFCE7",
+                      "cornerRadius": 20,
+                      "padding": [
+                        4,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "s4jyp0",
+                          "fill": "$accent-green",
+                          "content": "Disponível",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "pt3az",
+                  "name": "Consultorio201",
+                  "width": "fill_container",
+                  "fill": "#F1F5F9",
+                  "cornerRadius": 10,
+                  "stroke": "$border-light",
+                  "strokeWidth": 1,
+                  "gap": 16,
+                  "padding": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "hGLwo",
+                      "name": "NumBadge",
+                      "width": 48,
+                      "height": 48,
+                      "fill": "$text-muted",
+                      "cornerRadius": 10,
+                      "layout": "vertical",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "IgyVu",
+                          "fill": "$text-white",
+                          "content": "201",
+                          "fontFamily": "$font-body",
+                          "fontSize": 18,
+                          "fontWeight": "bold"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jXfw3",
+                      "name": "Info",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "PX5g4",
+                          "fill": "$text-primary",
+                          "content": "Consultório 201",
+                          "fontFamily": "$font-body",
+                          "fontSize": 15,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "M8yyVs",
+                          "fill": "$text-secondary",
+                          "content": "Bloco B - 2º Andar",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vZUeE",
+                      "name": "StatusTag",
+                      "fill": "#FEE2E2",
+                      "cornerRadius": 20,
+                      "padding": [
+                        4,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "QrtGL",
+                          "fill": "$accent-red",
+                          "content": "Ocupado",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "QO70I",
+              "name": "FooterCard",
+              "width": "fill_container",
+              "gap": 12,
+              "padding": [
+                16,
+                32,
+                24,
+                32
+              ],
+              "justifyContent": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "TO1sF",
+                  "name": "CancelBtn",
+                  "fill": "$bg-card",
+                  "cornerRadius": 8,
+                  "stroke": "$border-light",
+                  "strokeWidth": 1,
+                  "padding": [
+                    12,
+                    24
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YD7IX",
+                      "fill": "$text-secondary",
+                      "content": "Cancelar",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "dIYgn",
+                  "name": "ConfirmBtn",
+                  "fill": "$accent-green",
+                  "cornerRadius": 8,
+                  "padding": [
+                    12,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "gFkOO",
+                      "fill": "$text-white",
+                      "content": "Iniciar Atendimento",
+                      "fontFamily": "$font-body",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "FQCdY",
+      "x": 2966,
+      "y": -5,
+      "name": "Tela Login",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "fill": "#0F172A",
+      "layout": "vertical",
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "umemJ",
+          "name": "LoginCard",
+          "width": 420,
+          "fill": "$bg-card",
+          "cornerRadius": 16,
+          "layout": "vertical",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "EmKWj",
+              "name": "LoginHeader",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                40,
+                32,
+                32,
+                32
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "djHxy",
+                  "fill": "$accent-blue",
+                  "content": "SAAP",
+                  "fontFamily": "$font-body",
+                  "fontSize": 32,
+                  "fontWeight": "bold"
+                },
+                {
+                  "type": "text",
+                  "id": "ncTNa",
+                  "fill": "$text-secondary",
+                  "content": "Sistema de Atendimento",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "k3VLI0",
+              "name": "LoginBody",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                0,
+                32,
+                32,
+                32
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "kpycX",
+                  "name": "EmailField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "EjXHC",
+                      "fill": "$text-primary",
+                      "content": "E-mail",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Cq2Ni",
+                      "name": "EmailInput",
+                      "width": "fill_container",
+                      "fill": "$surface-alt",
+                      "cornerRadius": 8,
+                      "stroke": "$border-light",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "padding": [
+                        12,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "g6DWq",
+                          "fill": "$text-muted",
+                          "content": "medico@saap.com.br",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "FDuIn",
+                  "name": "PassField",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xXob6",
+                      "fill": "$text-primary",
+                      "content": "Senha",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LzHi5",
+                      "name": "PassInput",
+                      "width": "fill_container",
+                      "fill": "$surface-alt",
+                      "cornerRadius": 8,
+                      "stroke": "$border-light",
+                      "strokeWidth": 1,
+                      "layout": "vertical",
+                      "padding": [
+                        12,
+                        14
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "uzU5X",
+                          "fill": "$text-muted",
+                          "content": "••••••••",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Z6eWrZ",
+                  "name": "LoginBtn",
+                  "width": "fill_container",
+                  "fill": "$accent-blue",
+                  "cornerRadius": 8,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sQUkD",
+                      "fill": "$text-white",
+                      "content": "Entrar",
+                      "fontFamily": "$font-body",
+                      "fontSize": 16,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "kZaEf",
+              "name": "LoginFooter",
+              "width": "fill_container",
+              "padding": [
+                0,
+                32,
+                24,
+                32
+              ],
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tnXHV",
+                  "fill": "$accent-blue",
+                  "content": "Esqueceu a senha?",
+                  "fontFamily": "$font-body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "bg-page": {
+      "type": "color",
+      "value": "#F1F5F9"
+    },
+    "bg-card": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "bg-sidebar": {
+      "type": "color",
+      "value": "#1E293B"
+    },
+    "bg-sidebar-active": {
+      "type": "color",
+      "value": "#3B82F6"
+    },
+    "text-primary": {
+      "type": "color",
+      "value": "#1E293B"
+    },
+    "text-secondary": {
+      "type": "color",
+      "value": "#64748B"
+    },
+    "text-muted": {
+      "type": "color",
+      "value": "#94A3B8"
+    },
+    "text-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "accent-blue": {
+      "type": "color",
+      "value": "#3B82F6"
+    },
+    "accent-green": {
+      "type": "color",
+      "value": "#10B981"
+    },
+    "accent-yellow": {
+      "type": "color",
+      "value": "#F59E0B"
+    },
+    "accent-red": {
+      "type": "color",
+      "value": "#DC2626"
+    },
+    "border-light": {
+      "type": "color",
+      "value": "#E2E8F0"
+    },
+    "surface-alt": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "font-body": {
+      "type": "string",
+      "value": "Inter"
+    }
+  },
   "fileToken": "05e58cb5-917f-4873-acaf-2f0e0222b189"
 }
